@@ -1,0 +1,47 @@
+{
+  "name": "postcss-quantity-queries",
+  "version": "0.1.0",
+  "description": "PostCSS plugin enabling quantity-queries",
+  "keywords": [
+    "css",
+    "quantity-queries",
+    "postcss",
+    "postcss-plugins"
+  ],
+  "author": {
+    "name": "Pascal Duez",
+    "url": "https://github.com/pascalduez"
+  },
+  "homepage": "https://github.com/pascalduez/postcss-quantity-queries",
+  "bugs": "https://github.com/pascalduez/postcss-quantity-queries/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pascalduez/postcss-quantity-queries.git"
+  },
+  "license": {
+    "type": "unlicence",
+    "url": "http://unlicense.org"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "index.js",
+    "README.md",
+    "UNLICENSE"
+  ],
+  "dependencies": {
+    "postcss": "^4.0.6"
+  },
+  "devDependencies": {
+    "babel": "^4.7.3",
+    "babel-eslint": "^1.0.14",
+    "coveralls": "^2.11.2",
+    "eslint": "^0.16.1",
+    "faucet": "0.0.1",
+    "istanbul": "^0.3.7",
+    "tape": "^3.5.0"
+  },
+  "scripts": {
+    "test": "make dist test"
+  }
+}

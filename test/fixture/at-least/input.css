@@ -1,0 +1,25 @@
+ul > li {
+  @at-least 4 {
+    content: 'test';
+  }
+}
+
+ul > li {
+  @at-least 4 * {
+    content: 'test';
+  }
+}
+
+ul > li,
+nav > div {
+  @at-least 4 {
+    content: 'test';
+  }
+}
+
+ul > li,
+nav > div {
+  @at-least 4 * {
+    content: 'test';
+  }
+}

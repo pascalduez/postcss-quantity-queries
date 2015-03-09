@@ -1,0 +1,25 @@
+ul > li {
+  @between 4 6 {
+    content: 'test';
+  }
+}
+
+ul > li {
+  @between 4 6 * {
+    content: 'test';
+  }
+}
+
+ul > li,
+nav > div {
+  @between 4 6 {
+    content: 'test';
+  }
+}
+
+ul > li,
+nav > div {
+  @between 4 6 * {
+    content: 'test';
+  }
+}

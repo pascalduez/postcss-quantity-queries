@@ -1,0 +1,15 @@
+ul > li:nth-last-child(-n+4):first-child, ul > li:nth-last-child(-n+4):first-child ~ li {
+  content: 'test';
+}
+
+ul > li:nth-last-child(-n+4):first-child, ul > li:nth-last-child(-n+4):first-child ~ * {
+  content: 'test';
+}
+
+ul > li:nth-last-child(-n+4):first-child, ul > li:nth-last-child(-n+4):first-child ~ li, nav > div:nth-last-child(-n+4):first-child, nav > div:nth-last-child(-n+4):first-child ~ div {
+  content: 'test';
+}
+
+ul > li:nth-last-child(-n+4):first-child, ul > li:nth-last-child(-n+4):first-child ~ *, nav > div:nth-last-child(-n+4):first-child, nav > div:nth-last-child(-n+4):first-child ~ * {
+  content: 'test';
+}
