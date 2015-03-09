@@ -1,5 +1,10 @@
 # postcss-quantity-queries
 
+[![npm version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+
+
 > [PostCSS] plugin enabling quantity-queries.
 
 This plugin is derived from the Sass [Quantity Queries mixins] by Daniel Guillan.  
@@ -86,3 +91,15 @@ postcss-quantity-queries is [unlicensed](http://unlicense.org/).
 [article]: http://alistapart.com/article/quantity-queries-for-css
 [Quantity Queries mixins]: https://github.com/danielguillan/quantity-queries
 [demo]: http://codepen.io/danielguillan/pen/GgBOxm
+
+
+[npm-url]: https://www.npmjs.org/package/postcss-quantity-queries
+[npm-image]: http://img.shields.io/npm/v/postcss-quantity-queries.svg?style=flat-square
+[travis-url]: https://travis-ci.org/pascalduez/postcss-quantity-queries?branch=master
+[travis-image]: http://img.shields.io/travis/pascalduez/postcss-quantity-queries.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/pascalduez/postcss-quantity-queries
+[coveralls-image]: https://img.shields.io/coveralls/pascalduez/postcss-quantity-queries.svg?style=flat-square
+[depstat-url]: https://david-dm.org/pascalduez/postcss-quantity-queries
+[depstat-image]: https://david-dm.org/pascalduez/postcss-quantity-queries.svg?style=flat-square
+[license-image]: http://img.shields.io/npm/l/postcss-quantity-queries.svg?style=flat-square
+[license-url]: UNLICENSE
