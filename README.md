@@ -8,8 +8,10 @@
 > [PostCSS] plugin enabling quantity-queries.
 
 This plugin is derived from the Sass [Quantity Queries mixins] by Daniel Guillan.  
-For informations about quantity queries check this A List Apart [article] as well
-as Daniel’s [demo] on CodePen.
+For informations about quantity queries check those resources:  
+[Quantity Queries for CSS][]  
+[Styling elements based on sibling count][]  
+[Daniel’s demo on CodePen][]  
 
 
 ## Installation
@@ -52,28 +54,28 @@ nav > div {
 
 Target the items inside elements that contain `count` items or more:
 ```css
-@at-least(count [, selector]) { ... }
+@at-least count [, selector] { ... }
 ```
 
 ### at-most()
 
 Target the items inside elements that contain `count` items or less:
 ```css
-@at-most(count [, selector]) { ... }
+@at-most count [, selector] { ... }
 ```
 
 ### between()
 
 Target the items inside elements that contain a range between `start` and `end` items:
 ```css
-@between(start, end [, selector]) { ... }
+@between start, end [, selector] { ... }
 ```
 
 ### exactly()
 
 Target the items inside elements that contain exactly `count` items:
 ```css
-@exactly(count [, selector]) { ... }
+@exactly count [, selector] { ... }
 ```
 
 ## Credits
@@ -88,10 +90,10 @@ postcss-quantity-queries is [unlicensed](http://unlicense.org/).
 
 
 [PostCSS]: https://github.com/postcss/postcss
-[article]: http://alistapart.com/article/quantity-queries-for-css
 [Quantity Queries mixins]: https://github.com/danielguillan/quantity-queries
-[demo]: http://codepen.io/danielguillan/pen/GgBOxm
-
+[Quantity Queries for CSS]: http://alistapart.com/article/quantity-queries-for-css
+[Styling elements based on sibling count]: http://lea.verou.me/2011/01/styling-children-based-on-their-number-with-css3
+[Daniel’s demo on CodePen]: http://codepen.io/danielguillan/pen/GgBOxm
 
 [npm-url]: https://www.npmjs.org/package/postcss-quantity-queries
 [npm-image]: http://img.shields.io/npm/v/postcss-quantity-queries.svg?style=flat-square
