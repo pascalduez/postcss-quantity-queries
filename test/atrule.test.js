@@ -10,7 +10,7 @@ function read(name) {
   return fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
 }
 
-test('at-least', function (assert) {
+test('atrule::at-least', function (assert) {
   assert.plan(1);
 
   var input = read('atrule/at-least/input.css');
@@ -20,7 +20,7 @@ test('at-least', function (assert) {
   assert.equal(css, expected);
 });
 
-test('at-most', function (assert) {
+test('atrule::at-most', function (assert) {
   assert.plan(1);
 
   var input = read('atrule/at-most/input.css');
@@ -30,7 +30,7 @@ test('at-most', function (assert) {
   assert.equal(css, expected);
 });
 
-test('between', function (assert) {
+test('atrule::between', function (assert) {
   assert.plan(1);
 
   var input = read('atrule/between/input.css');
@@ -40,7 +40,7 @@ test('between', function (assert) {
   assert.equal(css, expected);
 });
 
-test('exactly', function (assert) {
+test('atrule::exactly', function (assert) {
   assert.plan(1);
 
   var input = read('atrule/exactly/input.css');

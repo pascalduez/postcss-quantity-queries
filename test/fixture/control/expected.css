@@ -1,0 +1,13 @@
+ul > li {
+  @media screen (min-width: 500px) {
+    content: 'test';
+  }
+}
+
+ul > li {
+  content: 'master';
+}
+
+ul > li:nth-last-child(n+4), ul > li:nth-last-child(n+4) ~ li {
+  content: 'test';
+}

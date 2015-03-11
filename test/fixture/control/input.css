@@ -1,0 +1,12 @@
+ul > li {
+  @media screen (min-width: 500px) {
+    content: 'test';
+  }
+}
+
+ul > li {
+  @at-least 4 {
+    content: 'test';
+  }
+  content: 'master';
+}
