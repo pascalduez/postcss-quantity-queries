@@ -25,11 +25,11 @@ test: dist
 
 cover: dist
 	rm -rf coverage
-	istanbul cover --report none --print detail test/*.test.js
+	istanbul cover --report none --print detail tape test/*.test.js
 
 cover-browse: dist
 	rm -rf coverage
-	istanbul cover --report html test/*.test.js
+	istanbul cover --report html tape test/*.test.js
 	open coverage/index.html
 
 travis: cover

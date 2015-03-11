@@ -13,8 +13,8 @@ function read(name) {
 test('at-least', function (assert) {
   assert.plan(1);
 
-  var input = read('at-least/input.css');
-  var expected = read('at-least/expected.css');
+  var input = read('pseudo/at-least/input.css');
+  var expected = read('pseudo/at-least/expected.css');
   var css = postcss(plugin()).process(input).css;
 
   assert.equal(css, expected);
@@ -23,8 +23,8 @@ test('at-least', function (assert) {
 test('at-most', function (assert) {
   assert.plan(1);
 
-  var input = read('at-most/input.css');
-  var expected = read('at-most/expected.css');
+  var input = read('pseudo/at-most/input.css');
+  var expected = read('pseudo/at-most/expected.css');
   var css = postcss(plugin()).process(input).css;
 
   assert.equal(css, expected);
@@ -33,8 +33,8 @@ test('at-most', function (assert) {
 test('between', function (assert) {
   assert.plan(1);
 
-  var input = read('between/input.css');
-  var expected = read('between/expected.css');
+  var input = read('pseudo/between/input.css');
+  var expected = read('pseudo/between/expected.css');
   var css = postcss(plugin()).process(input).css;
 
   assert.equal(css, expected);
@@ -43,8 +43,8 @@ test('between', function (assert) {
 test('exactly', function (assert) {
   assert.plan(1);
 
-  var input = read('exactly/input.css');
-  var expected = read('exactly/expected.css');
+  var input = read('pseudo/exactly/input.css');
+  var expected = read('pseudo/exactly/expected.css');
   var css = postcss(plugin()).process(input).css;
 
   assert.equal(css, expected);

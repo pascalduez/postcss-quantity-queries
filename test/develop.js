@@ -10,7 +10,13 @@ function read(name) {
 }
 
 ['at-least', 'at-most', 'between', 'exactly'].forEach(function (test) {
-  var input = read(test + '/input.css');
+  var input = read('atule/' + test + '/input.css');
+  var css = postcss(plugin()).process(input).css;
+  console.log(css);
+});
+
+['at-least', 'at-most', 'between', 'exactly'].forEach(function (test) {
+  var input = read('pseudo/' + test + '/input.css');
   var css = postcss(plugin()).process(input).css;
   console.log(css);
 });

@@ -1,0 +1,8 @@
+ul > li:at-most(4) {
+  content: 'test';
+}
+
+ul > li:at-most(4),
+nav > div:at-most(4) {
+  content: 'test';
+}

@@ -30,6 +30,7 @@
     "UNLICENSE"
   ],
   "dependencies": {
+    "balanced-match": "^0.2.0",
     "postcss": "^4.0.6"
   },
   "devDependencies": {
