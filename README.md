@@ -14,11 +14,13 @@ For informations about quantity queries check those resources:
 [Daniel’s demo on CodePen][]  
 
 
+
 ## Installation
 
 ```
 npm install postcss-quantity-queries --save-dev
 ```
+
 
 
 ## Usage
@@ -36,47 +38,129 @@ var output = postcss()
   .css;
 ```
 
-input:
 
-```css
-ul > li {
-  @at-least 4 { ... }
-}
-
-nav > div {
-  @between 2 6 span { ... }
-}
-```
 
 ## API
 
-### at-least()
+### at-least
 
-Target the items inside elements that contain `count` items or more:
+Target `count` items or more:
+```css
+:at-least(count) { ... }
+```
+input:
+```css
+ul > li:at-least(4) {
+  color: rebeccapurple;
+}
+```
+output:
+```css
+ul > li:nth-last-child(n+4),
+ul > li:nth-last-child(n+4) ~ li {
+  color: rebeccapurple;
+}
+```
+
+
+
+### at-most
+
+Target `count` items or less:
+```css
+:at-most(count) { ... }
+```
+input:
+```css
+ul > li:at-most(4) {
+  color: rebeccapurple;
+}
+```
+output:
+```css
+ul > li:nth-last-child(-n+4):first-child,
+ul > li:nth-last-child(-n+4):first-child ~ li {
+  color: rebeccapurple;
+}
+```
+
+
+
+### between
+
+Target a range of items between `start` and `end`:
+```css
+:between(start, end) { ... }
+```
+input:
+```css
+ul > li:between(4, 6) {
+  color: rebeccapurple;
+}
+```
+output:
+```css
+ul > li:nth-last-child(n+4):nth-last-child(-n+6):first-child,
+ul > li:nth-last-child(n+4):nth-last-child(-n+6):first-child ~ li {
+  color: rebeccapurple;
+}
+```
+
+
+
+### exactly
+
+Target exactly `count` items:
+```css
+:exactly(count) { ... }
+```
+input:
+```css
+ul > li:exactly(4) {
+  color: rebeccapurple;
+}
+```
+output:
+```css
+ul > li:nth-last-child(4):first-child,
+ul > li:nth-last-child(4):first-child ~ li {
+  color: rebeccapurple;
+}
+```
+
+There is also an at-rule API, similar to pre-processors.  
+Although the recommended API is the pseudo-selectors one.
+
 ```css
 @at-least count [, selector] { ... }
 ```
-
-### at-most()
-
-Target the items inside elements that contain `count` items or less:
 ```css
 @at-most count [, selector] { ... }
 ```
-
-### between()
-
-Target the items inside elements that contain a range between `start` and `end` items:
 ```css
-@between start, end [, selector] { ... }
+@between start end [, selector] { ... }
 ```
-
-### exactly()
-
-Target the items inside elements that contain exactly `count` items:
 ```css
 @exactly count [, selector] { ... }
 ```
+
+```css
+ul > li
+  @at-least 4 span {
+    color: rebeccapurple;
+  }
+}
+
+ul > li
+  @between 4 6 {
+    color: rebeccapurple;
+  }
+}
+```
+
+Check out the [tests](test/fixtures) for more examples.
+
+
 
 ## Credits
 
