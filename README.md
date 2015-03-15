@@ -128,6 +128,17 @@ ul > li:nth-last-child(4):first-child ~ li {
 }
 ```
 
+### All pseudo-selector extensions
+
+Selector | Description
+---|---
+[#](#at-least) `:at-least(count) { … }` | Target `count` items or more
+[#](#at-most) `:at-most(count) { … }` | Target `count` items or less
+[#](#between) `:between(start, end) { … }` | Target a range of items between `start` and `end`
+[#](#exactly) `:exactly(count) { … }` | Target exactly `count` items
+
+## At-rule API
+
 There is also an at-rule API, similar to pre-processors.  
 Although the recommended API is the pseudo-selectors one.
 
@@ -145,13 +156,13 @@ Although the recommended API is the pseudo-selectors one.
 ```
 
 ```css
-ul > li
+ul > li {
   @at-least 4 span {
     color: rebeccapurple;
   }
 }
 
-ul > li
+ul > li {
   @between 4 6 {
     color: rebeccapurple;
   }
