@@ -15,15 +15,16 @@ test('control', function (assert) {
 
   var input = read('control/input.css');
   var expected = read('control/expected.css');
+  var css;
 
-  var css = postcss(plugin).process(input).css;
+  css = postcss(plugin).process(input).css;
   assert.equal(css, expected);
 
-  var css = postcss(plugin.postcss).process(input).css;
+  css = postcss(plugin.postcss).process(input).css;
   assert.equal(css, expected);
 
   var processor = postcss();
   processor.use(plugin);
-  var css = processor.process(input).toString();
+  css = processor.process(input).toString();
   assert.equal(css, expected);
 });

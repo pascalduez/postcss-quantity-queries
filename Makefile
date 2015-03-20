@@ -1,6 +1,6 @@
 PATH := $(PWD)/node_modules/.bin:$(PATH)
 
-all: dist test
+all: lint dist test
 
 
 # ESnext compilation
@@ -32,7 +32,7 @@ cover-browse: dist
 	istanbul cover --report html tape test/*.test.js
 	open coverage/index.html
 
-travis: cover
+travis: lint cover
 	istanbul report lcovonly
 	(cat coverage/lcov.info | coveralls) || exit 0
 	rm -rf coverage
