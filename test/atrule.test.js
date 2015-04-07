@@ -15,7 +15,7 @@ test('atrule::at-least', function (assert) {
 
   var input = read('atrule/at-least/input.css');
   var expected = read('atrule/at-least/expected.css');
-  var css = postcss(plugin()).process(input).css;
+  var css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
@@ -25,7 +25,7 @@ test('atrule::at-most', function (assert) {
 
   var input = read('atrule/at-most/input.css');
   var expected = read('atrule/at-most/expected.css');
-  var css = postcss(plugin()).process(input).css;
+  var css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
@@ -35,7 +35,7 @@ test('atrule::between', function (assert) {
 
   var input = read('atrule/between/input.css');
   var expected = read('atrule/between/expected.css');
-  var css = postcss(plugin()).process(input).css;
+  var css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
@@ -45,7 +45,7 @@ test('atrule::exactly', function (assert) {
 
   var input = read('atrule/exactly/input.css');
   var expected = read('atrule/exactly/expected.css');
-  var css = postcss(plugin()).process(input).css;
+  var css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });

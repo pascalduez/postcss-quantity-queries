@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "balanced-match": "^0.2.0",
-    "postcss": "^4.0.6"
+    "postcss": "^4.1.4"
   },
   "devDependencies": {
     "babel": "^5.0.9",
