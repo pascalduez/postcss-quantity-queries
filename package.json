@@ -6,7 +6,7 @@
     "css",
     "quantity-queries",
     "postcss",
-    "postcss-plugins"
+    "postcss-plugin"
   ],
   "author": {
     "name": "Pascal Duez",
