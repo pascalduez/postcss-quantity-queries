@@ -1,5 +1,11 @@
 # postcss-quantity-queries changelog
 
+## 0.3.1
+(2015-05-02)
+
+* Use standard package keyword
+([#319](https://github.com/postcss/postcss/issues/319))
+
 ## 0.3.0
 (2015-04-08)
 
