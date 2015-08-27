@@ -37,6 +37,7 @@
     "eslint": "^0.20.0",
     "faucet": "0.0.1",
     "istanbul": "^0.3.13",
+    "opn-cli": "^1.0.0",
     "tape": "^4.0.0"
   },
   "scripts": {
