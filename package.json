@@ -33,10 +33,10 @@
   "devDependencies": {
     "babel": "^5.8.21",
     "babel-eslint": "^4.1.0",
+    "babel-istanbul": "^0.3.18",
     "coveralls": "^2.11.2",
     "eslint": "^1.2.1",
     "faucet": "0.0.1",
-    "istanbul": "^0.3.13",
     "opn-cli": "^1.0.0",
     "tape": "^4.0.0"
   },
