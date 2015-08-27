@@ -31,7 +31,7 @@
     "postcss": "^4.1.6"
   },
   "devDependencies": {
-    "babel": "^5.1.13",
+    "babel": "^5.8.21",
     "babel-eslint": "^4.1.0",
     "coveralls": "^2.11.2",
     "eslint": "^1.2.1",
