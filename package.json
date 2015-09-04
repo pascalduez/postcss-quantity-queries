@@ -1,6 +1,6 @@
 {
   "name": "postcss-quantity-queries",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "PostCSS plugin enabling quantity-queries",
   "keywords": [
     "css",

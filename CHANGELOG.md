@@ -1,5 +1,12 @@
 # postcss-quantity-queries changelog
 
+## 0.4.0
+(2015-09-04)
+
+* Upgrade to PostCSS 5
+([81515c1](https://github.com/pascalduez/postcss-quantity-queries/commit/81515c1b4bd79428e9283e5ff8c3a07c449ef15a))
+
+
 ## 0.3.1
 (2015-05-02)
 
