@@ -1,8 +1,8 @@
 ul > li:between(4, 6) {
-  content: 'test';
+  content: 'between test';
 }
 
 ul > li:between(4, 6),
 nav > div:between(4, 6) {
-  content: 'test';
+  content: 'between test';
 }

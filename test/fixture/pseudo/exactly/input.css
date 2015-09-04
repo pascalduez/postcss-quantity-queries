@@ -1,8 +1,8 @@
 ul > li:exactly(4) {
-  content: 'test';
+  content: 'exactly test';
 }
 
 ul > li:exactly(4),
 nav > div:exactly(4) {
-  content: 'test';
+  content: 'exactly test';
 }
