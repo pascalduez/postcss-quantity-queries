@@ -169,7 +169,7 @@ ul > li {
 }
 ```
 
-Check out the [tests](test/fixtures) for more examples.
+Check out the [tests](test/fixture) for more examples.
 
 
 
