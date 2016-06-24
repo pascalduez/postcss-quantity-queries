@@ -10,7 +10,7 @@ dist:
 	rm -rf $@
 	babel lib -d $@
 
-develop: build
+develop:
 	babel-node $@
 
 
@@ -20,22 +20,19 @@ develop: build
 lint:
 	eslint ./lib ./test
 
-test: dist
-	tape test/*.test.js | faucet
+test: lint dist
+	ava
 
 cover: dist
-	rm -rf coverage
-	babel-istanbul cover --report none --print detail tape test/*.test.js
+	nyc ava
 
-cover-browse: dist
+cover-browse: dist cover
 	rm -rf coverage
-	babel-istanbul cover --report html tape test/*.test.js
+	nyc --reporter=html ava
 	opn coverage/index.html
 
-travis: lint cover
-	babel-istanbul report lcovonly
-	(cat coverage/lcov.info | coveralls) || exit 0
-	rm -rf coverage
+coveralls: cover
+	(nyc report --reporter=text-lcov | coveralls) || exit 0
 
 
 # Publish package to npm

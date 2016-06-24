@@ -1,49 +1,58 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const postcss = require('postcss');
-const plugin = require('../');
+import fs from 'fs';
+import path from 'path';
+import test from 'ava';
+import { expect } from 'chai';
+import postcss from 'postcss';
+import plugin from '../';
 
-function read(name) {
-  return fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
-}
+const read = name =>
+  fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
 
-test('pseudo::at-least', function (assert) {
-  assert.plan(1);
 
+test('pseudo::at-least', () => {
   const input = read('pseudo/at-least/input.css');
   const expected = read('pseudo/at-least/expected.css');
-  const css = postcss([plugin()]).process(input).css;
 
-  assert.equal(css, expected);
+  return postcss()
+    .use(plugin)
+    .process(input)
+    .then(result => {
+      expect(result.css).to.equal(expected);
+    });
 });
 
-test('pseudo::at-most', function (assert) {
-  assert.plan(1);
-
+test('pseudo::at-most', () => {
   const input = read('pseudo/at-most/input.css');
   const expected = read('pseudo/at-most/expected.css');
-  const css = postcss([plugin()]).process(input).css;
 
-  assert.equal(css, expected);
+  return postcss()
+    .use(plugin)
+    .process(input)
+    .then(result => {
+      expect(result.css).to.equal(expected);
+    });
 });
 
-test('pseudo::between', function (assert) {
-  assert.plan(1);
-
+test('pseudo::between', () => {
   const input = read('pseudo/between/input.css');
   const expected = read('pseudo/between/expected.css');
-  const css = postcss([plugin()]).process(input).css;
 
-  assert.equal(css, expected);
+  return postcss()
+    .use(plugin)
+    .process(input)
+    .then(result => {
+      expect(result.css).to.equal(expected);
+    });
 });
 
-test('pseudo::exactly', function (assert) {
-  assert.plan(1);
-
+test('pseudo::exactly', () => {
   const input = read('pseudo/exactly/input.css');
   const expected = read('pseudo/exactly/expected.css');
-  const css = postcss([plugin()]).process(input).css;
 
-  assert.equal(css, expected);
+  return postcss()
+    .use(plugin)
+    .process(input)
+    .then(result => {
+      expect(result.css).to.equal(expected);
+    });
 });
