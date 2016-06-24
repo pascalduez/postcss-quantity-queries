@@ -1,11 +1,9 @@
-'use strict';
-
-var fs = require('fs');
-var path = require('path');
-var test = require('tape');
-var postcss = require('postcss');
-var plugin = require('../');
-var pluginName = require('../package.json').name;
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const postcss = require('postcss');
+const plugin = require('../');
+const pluginName = require('../package.json').name;
 
 function read(name) {
   return fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
@@ -14,9 +12,9 @@ function read(name) {
 test('control', function (assert) {
   assert.plan(5);
 
-  var input = read('control/input.css');
-  var expected = read('control/expected.css');
-  var css;
+  const input = read('control/input.css');
+  const expected = read('control/expected.css');
+  let css;
 
   // No opts passed, no maps.
   css = postcss([plugin]).process(input).css;
@@ -27,7 +25,7 @@ test('control', function (assert) {
   assert.equal(css, expected);
 
   // PostCSS API.
-  var processor = postcss();
+  const processor = postcss();
   processor.use(plugin);
   css = processor.process(input).toString();
   assert.equal(css, expected);

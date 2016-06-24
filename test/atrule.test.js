@@ -1,10 +1,8 @@
-'use strict';
-
-var fs = require('fs');
-var path = require('path');
-var test = require('tape');
-var postcss = require('postcss');
-var plugin = require('../');
+const fs = require('fs');
+const path = require('path');
+const test = require('tape');
+const postcss = require('postcss');
+const plugin = require('../');
 
 function read(name) {
   return fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
@@ -13,9 +11,9 @@ function read(name) {
 test('atrule::at-least', function (assert) {
   assert.plan(1);
 
-  var input = read('atrule/at-least/input.css');
-  var expected = read('atrule/at-least/expected.css');
-  var css = postcss([plugin()]).process(input).css;
+  const input = read('atrule/at-least/input.css');
+  const expected = read('atrule/at-least/expected.css');
+  const css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
@@ -23,9 +21,9 @@ test('atrule::at-least', function (assert) {
 test('atrule::at-most', function (assert) {
   assert.plan(1);
 
-  var input = read('atrule/at-most/input.css');
-  var expected = read('atrule/at-most/expected.css');
-  var css = postcss([plugin()]).process(input).css;
+  const input = read('atrule/at-most/input.css');
+  const expected = read('atrule/at-most/expected.css');
+  const css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
@@ -33,9 +31,9 @@ test('atrule::at-most', function (assert) {
 test('atrule::between', function (assert) {
   assert.plan(1);
 
-  var input = read('atrule/between/input.css');
-  var expected = read('atrule/between/expected.css');
-  var css = postcss([plugin()]).process(input).css;
+  const input = read('atrule/between/input.css');
+  const expected = read('atrule/between/expected.css');
+  const css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
@@ -43,9 +41,9 @@ test('atrule::between', function (assert) {
 test('atrule::exactly', function (assert) {
   assert.plan(1);
 
-  var input = read('atrule/exactly/input.css');
-  var expected = read('atrule/exactly/expected.css');
-  var css = postcss([plugin()]).process(input).css;
+  const input = read('atrule/exactly/input.css');
+  const expected = read('atrule/exactly/expected.css');
+  const css = postcss([plugin()]).process(input).css;
 
   assert.equal(css, expected);
 });
