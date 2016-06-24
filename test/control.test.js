@@ -1,37 +1,48 @@
-'use strict';
+/* eslint-disable no-unused-expressions */
 
-var fs = require('fs');
-var path = require('path');
-var test = require('tape');
-var postcss = require('postcss');
-var plugin = require('../');
-var pluginName = require('../package.json').name;
+import fs from 'fs';
+import path from 'path';
+import test from 'ava';
+import { expect } from 'chai';
+import postcss from 'postcss';
+import plugin from '../';
 
-function read(name) {
-  return fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
-}
+const pluginName = require('../package.json').name;
 
-test('control', function (assert) {
-  assert.plan(5);
+const read = name =>
+  fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
 
-  var input = read('control/input.css');
-  var expected = read('control/expected.css');
-  var css;
+const expected = read('control/expected.css');
+const input = read('control/input.css');
 
-  // No opts passed, no maps.
-  css = postcss([plugin]).process(input).css;
-  assert.equal(css, expected);
 
-  // PostCSS legacy API.
-  css = postcss([plugin.postcss]).process(input).css;
-  assert.equal(css, expected);
+test('control: no options', () =>
+  postcss([plugin])
+    .process(input)
+    .then(result => {
+      expect(result.css).to.equal(expected);
+    }));
 
-  // PostCSS API.
-  var processor = postcss();
+test('control: with options', () =>
+  postcss([plugin({})])
+    .process(input)
+    .then(result => {
+      expect(result.css).to.equal(expected);
+    }));
+
+test('control: PostCSS legacy API', () => {
+  const result = postcss([plugin.postcss]).process(input).css;
+  expect(result).to.equal(expected);
+});
+
+test('control: PostCSS API', () => {
+  const processor = postcss();
   processor.use(plugin);
-  css = processor.process(input).toString();
-  assert.equal(css, expected);
 
-  assert.equal(processor.plugins[0].postcssPlugin, pluginName);
-  assert.ok(processor.plugins[0].postcssVersion);
+  return processor.process(input).then(result => {
+    expect(result.css).to.equal(expected);
+
+    expect(processor.plugins[0].postcssPlugin).to.equal(pluginName);
+    expect(processor.plugins[0].postcssVersion).to.be.ok;
+  });
 });

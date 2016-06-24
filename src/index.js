@@ -1,12 +1,16 @@
+/* eslint-disable no-param-reassign, no-use-before-define, consistent-return */
+
 import postcss, { list } from 'postcss';
 import balanced from 'balanced-match';
 
 export default postcss.plugin('postcss-quantity-queries', () => css => {
   css.walk(node => {
-    if (node.type === 'rule')
+    if (node.type === 'rule') {
       return processRule(node);
-    if (node.type === 'atrule')
+    }
+    if (node.type === 'atrule') {
       return processAtRule(node);
+    }
   });
 });
 
@@ -18,9 +22,9 @@ function processRule(rule) {
 
   rule.selectors =
   rule.selectors.map(s => {
-    let { pre, body } = balanced('(', ')', s);
-    let args = list.comma(body);
-    let [ selector, quantifier ] = pre.split(/:{1,2}/);
+    const { pre, body } = balanced('(', ')', s);
+    const args = list.comma(body);
+    const [selector, quantifier] = pre.split(/:{1,2}/);
 
     return quantifiers[quantifier](...args)([selector]);
   });
@@ -29,12 +33,12 @@ function processRule(rule) {
 function processAtRule(atRule) {
   if (!reAtRule.test(atRule.name)) return;
 
-  let args = list.space(atRule.params);
-  let parent = atRule.parent;
-  let root = parent.root();
-  let selectors = quantifiers[atRule.name](...args)(parent.selectors);
+  const args = list.space(atRule.params);
+  const parent = atRule.parent;
+  const root = parent.root();
+  const selectors = quantifiers[atRule.name](...args)(parent.selectors);
 
-  let newRule = postcss.rule({
+  const newRule = postcss.rule({
     selectors,
     nodes: atRule.nodes,
     source: atRule.source,
@@ -68,10 +72,10 @@ const quantifiers = {
   'at-most': (count, last) =>
     quantitySelectors(`:nth-last-child(-n+${count}):first-child`, last),
 
-  'between': (start, end, last) =>
+  between: (start, end, last) =>
     quantitySelectors(`:nth-last-child(n+${start}):nth-last-child(-n+${end}):first-child`, last),
 
-  'exactly': (count, last) =>
+  exactly: (count, last) =>
     quantitySelectors(`:nth-last-child(${count}):first-child`, last),
 
 };
