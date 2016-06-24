@@ -6,7 +6,7 @@ import postcss from 'postcss';
 import plugin from '../';
 
 const read = name =>
-  fs.readFileSync(join(__dirname, 'fixture', name), 'utf8');
+  fs.readFileSync(join(process.cwd(), 'test', 'fixture', name), 'utf8');
 
 
 ['at-least', 'at-most', 'between', 'exactly'].forEach(test => {
