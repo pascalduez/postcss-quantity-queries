@@ -26,16 +26,18 @@ npm install postcss-quantity-queries --save-dev
 ## Usage
 
 ```js
-var fs = require('fs');
-var postcss = require('postcss');
-var quantityQueries = require('postcss-quantity-queries');
+const fs = require('fs');
+const postcss = require('postcss');
+const quantityQueries = require('postcss-quantity-queries');
 
-var css = fs.readFileSync('input.css', 'utf8');
+const input = fs.readFileSync('input.css', 'utf8');
 
-var output = postcss()
-  .use(quantityQueries())
-  .process(css)
-  .css;
+postcss()
+  .use(quantityQueries)
+  .process(input)
+  .then(result => {
+    fs.writeFileSync('output.css', result.css);
+  });
 ```
 
 
@@ -139,8 +141,9 @@ Selector | Description
 
 ## At-rule API
 
-There is also an at-rule API, similar to pre-processors.  
-Although the recommended API is the pseudo-selectors one.
+There is also an at-rule API available, similar to pre-processors.  
+Although it might get deprecated at some point.  
+The recommended API is the pseudo-selectors one. 
 
 ```css
 @at-least count [, selector] { ... }
