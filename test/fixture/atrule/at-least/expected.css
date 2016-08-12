@@ -1,15 +1,16 @@
-ul > li:nth-last-child(n+4), ul > li:nth-last-child(n+4) ~ li {
+ul > li:nth-last-child(n+4),
+ul > li:nth-last-child(n+4) ~ li {
   content: 'test';
 }
 
-ul > li:nth-last-child(n+4), ul > li:nth-last-child(n+4) ~ * {
+ul > li:nth-last-child(n+4) a,
+ul > li:nth-last-child(n+4) ~ li a {
   content: 'test';
 }
 
-ul > li:nth-last-child(n+4), ul > li:nth-last-child(n+4) ~ li, nav > div:nth-last-child(n+4), nav > div:nth-last-child(n+4) ~ div {
-  content: 'test';
-}
-
-ul > li:nth-last-child(n+4), ul > li:nth-last-child(n+4) ~ *, nav > div:nth-last-child(n+4), nav > div:nth-last-child(n+4) ~ * {
+ul li:nth-last-child(n+4),
+ul li:nth-last-child(n+4) ~ li,
+nav a:nth-last-child(n+4),
+nav a:nth-last-child(n+4) ~ a {
   content: 'test';
 }

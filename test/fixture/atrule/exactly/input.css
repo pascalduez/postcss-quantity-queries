@@ -1,25 +1,25 @@
 ul > li {
-  @exactly 4 {
+  @exactly(4) {
     content: 'test';
   }
 }
 
 ul > li {
-  @exactly 4 * {
+  @exactly(4) * {
     content: 'test';
   }
 }
 
 ul > li,
 nav > div {
-  @exactly 4 {
+  @exactly(4) {
     content: 'test';
   }
 }
 
 ul > li,
 nav > div {
-  @exactly 4 * {
+  @exactly(4) * {
     content: 'test';
   }
 }

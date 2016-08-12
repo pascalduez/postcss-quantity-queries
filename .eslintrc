@@ -4,5 +4,7 @@ parser: "babel-eslint"
 extends:
   - "airbnb-base"
   - "plugin:ava/recommended"
+  - "prettier"
+
 plugins:
   - ava

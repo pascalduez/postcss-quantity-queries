@@ -1,29 +1,28 @@
 /* eslint-disable no-param-reassign, no-use-before-define, consistent-return */
 
-import postcss, { list } from 'postcss';
+import parser from 'postcss-selector-parser';
 import balanced from 'balanced-match';
+import postcss from 'postcss';
 
-export default postcss.plugin('postcss-quantity-queries', () => (css) => {
-  css.walk((node) => {
-    if (node.type === 'rule') {
+const rePseudo = /(.*)(?::{1,2})(at-(?:least|most)|between|exactly)/;
+const reAtRule = /(at-(?:least|most)|between|exactly)/;
+
+export default postcss.plugin('postcss-quantity-queries', () => css => {
+  css.walk(node => {
+    if (node.type === 'rule' && rePseudo.test(node.selector)) {
       return processRule(node);
     }
-    if (node.type === 'atrule') {
+
+    if (node.type === 'atrule' && reAtRule.test(node.name)) {
       return processAtRule(node);
     }
   });
 });
 
-const rePseudo = /(.*)(?::{1,2})(at-(?:least|most)|between|exactly)/;
-const reAtRule = /(at-(?:least|most)|between|exactly)/;
-
 function processRule(rule) {
-  if (!rePseudo.test(rule.selector)) return;
-
-  rule.selectors =
-  rule.selectors.map((s) => {
-    const { pre, body } = balanced('(', ')', s);
-    const args = list.comma(body);
+  rule.selectors = rule.selectors.map(sel => {
+    const { pre, body } = balanced('(', ')', sel);
+    const args = postcss.list.comma(body);
     const [selector, quantifier] = pre.split(/:{1,2}/);
 
     return quantifiers[quantifier](...args)([selector]);
@@ -31,15 +30,14 @@ function processRule(rule) {
 }
 
 function processAtRule(atRule) {
-  if (!reAtRule.test(atRule.name)) return;
+  const { parent, name } = atRule;
+  const { body, post } = balanced('(', ')', atRule.params);
+  const args = postcss.list.comma(body);
 
-  const args = list.space(atRule.params);
-  const parent = atRule.parent;
-  const root = parent.root();
-  const selectors = quantifiers[atRule.name](...args)(parent.selectors);
+  const selector = quantitySelectors(name, ...args)(parent.selector, post);
 
   const newRule = postcss.rule({
-    selectors,
+    selector,
     nodes: atRule.nodes,
     source: atRule.source,
     raws: {
@@ -49,33 +47,65 @@ function processAtRule(atRule) {
 
   cleanIndent(newRule);
 
-  root.insertAfter(parent, newRule);
+  parent.root().insertAfter(parent, newRule);
   atRule.remove();
 
-  if (!parent.nodes.length) parent.remove();
+  if (!parent.nodes.length) {
+    parent.remove();
+  }
 }
 
-const cleanIndent = rule =>
-  rule.walkDecls((decl) => {
-    decl.raws.before = decl.raws.before.replace(/[^\S\x0a\x0d]{2,}/, '  ');
+const quantitySelectors = (quantifier, ...args) => (selector, post = '') => {
+  // console.log(quantifier);
+  // console.log(args);
+  // console.log(selector);
+  // console.log(post);
+  const pseudoToken = parser.pseudo({
+    value: quantifiers[quantifier](...args),
   });
+  console.log(pseudoToken);
+  // const postToken = parser.string({ value: post });
+  // const siblingToken = parser.combinator({ value: '~' });
+  // siblingToken.spaces = { before: ' ', after: ' ' };
+  //
+  const transform = selectors => {
+    // let last;
+    selectors.each(sel => {
+      console.log(sel.last);
+      // let fake = parser.className({ value: 'foobar__' + index });
+      // console.log(fake);
+      // console.log(sel.parent);
+      // last = sel.last;
+      // console.log(sel.last);
+      // sel.parent.insertAfter(sel, fake);
+    });
+  };
 
-const quantitySelectors = (quantifier, last) => selectors =>
-  selectors.map(s =>
-    `${s}${quantifier}, ${s}${quantifier} ~ ${last || list.space(s).pop()}`);
+  return parser(transform).processSync(selector).result;
+
+  // return selectors.map(sel =>
+  //   `${sel}${pseudo}${post}, ${sel}${pseudo} ~ ${last}${post}`);
+  // return ['', ''];
+};
 
 const quantifiers = {
+  'at-least': count => `:nth-last-child(n+${count})`,
 
-  'at-least': (count, last) =>
-    quantitySelectors(`:nth-last-child(n+${count})`, last),
+  'at-most': count => `:nth-last-child(-n+${count}):first-child`,
 
-  'at-most': (count, last) =>
-    quantitySelectors(`:nth-last-child(-n+${count}):first-child`, last),
+  between: (start, end) =>
+    `:nth-last-child(n+${start}):nth-last-child(-n+${end}):first-child`,
 
-  between: (start, end, last) =>
-    quantitySelectors(`:nth-last-child(n+${start}):nth-last-child(-n+${end}):first-child`, last),
-
-  exactly: (count, last) =>
-    quantitySelectors(`:nth-last-child(${count}):first-child`, last),
-
+  exactly: count => `:nth-last-child(${count}):first-child`,
 };
+
+/**
+ * Helper: remove excessive declarations indentation.
+ */
+function cleanIndent(rule) {
+  rule.walkDecls(decl => {
+    if (typeof decl.raws.before === 'string') {
+      decl.raws.before = decl.raws.before.replace(/[^\S\n\r]{2,}/, '  ');
+    }
+  });
+}
