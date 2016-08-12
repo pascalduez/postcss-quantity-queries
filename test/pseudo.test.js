@@ -9,50 +9,46 @@ const read = name =>
   fs.readFileSync(path.join(__dirname, 'fixture', name), 'utf8');
 
 
-test('pseudo::at-least', () => {
+test('pseudo::at-least', async () => {
   const input = read('pseudo/at-least/input.css');
   const expected = read('pseudo/at-least/expected.css');
 
-  return postcss()
+  const result = await postcss()
     .use(plugin)
-    .process(input)
-    .then(result => {
-      expect(result.css).to.equal(expected);
-    });
+    .process(input);
+
+  expect(result.css).to.equal(expected);
 });
 
-test('pseudo::at-most', () => {
+test('pseudo::at-most', async () => {
   const input = read('pseudo/at-most/input.css');
   const expected = read('pseudo/at-most/expected.css');
 
-  return postcss()
+  const result = await postcss()
     .use(plugin)
-    .process(input)
-    .then(result => {
-      expect(result.css).to.equal(expected);
-    });
+    .process(input);
+
+  expect(result.css).to.equal(expected);
 });
 
-test('pseudo::between', () => {
+test('pseudo::between', async () => {
   const input = read('pseudo/between/input.css');
   const expected = read('pseudo/between/expected.css');
 
-  return postcss()
+  const result = await postcss()
     .use(plugin)
-    .process(input)
-    .then(result => {
-      expect(result.css).to.equal(expected);
-    });
+    .process(input);
+
+  expect(result.css).to.equal(expected);
 });
 
-test('pseudo::exactly', () => {
+test('pseudo::exactly', async () => {
   const input = read('pseudo/exactly/input.css');
   const expected = read('pseudo/exactly/expected.css');
 
-  return postcss()
+  const result = await postcss()
     .use(plugin)
-    .process(input)
-    .then(result => {
-      expect(result.css).to.equal(expected);
-    });
+    .process(input);
+
+  expect(result.css).to.equal(expected);
 });

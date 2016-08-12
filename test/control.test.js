@@ -35,14 +35,13 @@ test('control: PostCSS legacy API', () => {
   expect(result).to.equal(expected);
 });
 
-test('control: PostCSS API', () => {
+test('control: PostCSS API', async () => {
   const processor = postcss();
   processor.use(plugin);
 
-  return processor.process(input).then(result => {
-    expect(result.css).to.equal(expected);
+  const result = await processor.process(input);
 
-    expect(processor.plugins[0].postcssPlugin).to.equal(pluginName);
-    expect(processor.plugins[0].postcssVersion).to.be.ok;
-  });
+  expect(result.css).to.equal(expected);
+  expect(processor.plugins[0].postcssPlugin).to.equal(pluginName);
+  expect(processor.plugins[0].postcssVersion).to.be.ok;
 });
