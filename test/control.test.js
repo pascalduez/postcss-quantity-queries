@@ -19,14 +19,14 @@ const input = read('control/input.css');
 test('control: no options', () =>
   postcss([plugin])
     .process(input)
-    .then(result => {
+    .then((result) => {
       expect(result.css).to.equal(expected);
     }));
 
 test('control: with options', () =>
   postcss([plugin({})])
     .process(input)
-    .then(result => {
+    .then((result) => {
       expect(result.css).to.equal(expected);
     }));
 

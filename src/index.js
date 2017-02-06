@@ -3,8 +3,8 @@
 import postcss, { list } from 'postcss';
 import balanced from 'balanced-match';
 
-export default postcss.plugin('postcss-quantity-queries', () => css => {
-  css.walk(node => {
+export default postcss.plugin('postcss-quantity-queries', () => (css) => {
+  css.walk((node) => {
     if (node.type === 'rule') {
       return processRule(node);
     }
@@ -21,7 +21,7 @@ function processRule(rule) {
   if (!rePseudo.test(rule.selector)) return;
 
   rule.selectors =
-  rule.selectors.map(s => {
+  rule.selectors.map((s) => {
     const { pre, body } = balanced('(', ')', s);
     const args = list.comma(body);
     const [selector, quantifier] = pre.split(/:{1,2}/);
@@ -56,11 +56,11 @@ function processAtRule(atRule) {
 }
 
 const cleanIndent = rule =>
-  rule.walkDecls(decl => {
+  rule.walkDecls((decl) => {
     decl.raws.before = decl.raws.before.replace(/[^\S\x0a\x0d]{2,}/, '  ');
   });
 
-const quantitySelectors = (quantifier, last) => (selectors) =>
+const quantitySelectors = (quantifier, last) => selectors =>
   selectors.map(s =>
     `${s}${quantifier}, ${s}${quantifier} ~ ${last || list.space(s).pop()}`);
 
