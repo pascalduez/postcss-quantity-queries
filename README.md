@@ -1,5 +1,7 @@
 # postcss-quantity-queries
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pascalduez/postcss-quantity-queries.svg)](https://greenkeeper.io/)
+
 [![npm version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
