@@ -31,7 +31,8 @@
     "coverage": "nyc npm test"
   },
   "ava": {
-    "files": "test/**/*.test.js"
+    "files": "test/**/*.test.js",
+    "failWithoutAssertions": false
   },
   "dependencies": {
     "balanced-match": "^0.4.2",
