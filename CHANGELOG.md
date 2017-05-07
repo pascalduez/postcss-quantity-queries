@@ -1,31 +1,38 @@
-# postcss-quantity-queries changelog
+# postcss-quantity-queries change Log
 
-## 0.4.0
-(2015-09-04)
+All notable changes to this project will be documented in this file.
 
-* Upgrade to PostCSS 5
-([81515c1](https://github.com/pascalduez/postcss-quantity-queries/commit/81515c1b4bd79428e9283e5ff8c3a07c449ef15a))
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## 0.3.1
-(2015-05-02)
+## [Unreleased]
 
-* Use standard package keyword
-([#319](https://github.com/postcss/postcss/issues/319))
+## [0.4.0] - 2015-09-04
+### Changed
+  * PostCSS 5 upgrade.
 
-## 0.3.0
-(2015-04-08)
+## [0.3.1] - 2015-05-02
+### Fixed
+  * Use standard package keyword
+  ([#319](https://github.com/postcss/postcss/issues/319))
 
-* Use latest PostCSS 4.1.* plugin API ([16b7a8a](https://github.com/pascalduez/postcss-map/commit/16b7a8ac8aad17e400821d5f6454b86223abe487))
-* Upgrade to Babel 5.0 ([4754352](https://github.com/pascalduez/postcss-map/commit/475435295f30727e3e91330b8b0a850d20812eae))
+## [0.3.0]- 2015-04-08
+### Changed
+  * Use latest PostCSS 4.1.* plugin API.
+  * Upgrade to Babel 5.0.
 
-## 0.2.0
-(2015-03-12)
+## [0.2.0] - 2015-03-12
+### Added
+  * A new pseudo-selectors API.
+  ([#2](https://github.com/pascalduez/postcss-quantity-queries/issues/2))
 
-* Added a new pseudo-selectors API.
-([#2](https://github.com/pascalduez/postcss-quantity-queries/issues/2))
+## [0.1.0] - 2015-03-09
+  * Initial release.
 
-## 0.1.0
-(2015-03-09)
-
-* Initial release.
+[Unreleased]: https://github.com/pascalduez/postcss-quantity-queries/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/pascalduez/postcss-quantity-queries/compare/0.3.1...0.4.0
+[0.3.1]: https://github.com/pascalduez/postcss-quantity-queries/compare/0.3.0...0.3.1
+[0.3.0]: https://github.com/pascalduez/postcss-quantity-queries/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/pascalduez/postcss-quantity-queries/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/pascalduez/postcss-quantity-queries/tags/0.1.0
